@@ -9,6 +9,7 @@ from algoritmos.ordenamiento.merge_sort import merge_sort
 from algoritmos.ordenamiento.tim_sort import tim_sort
 from algoritmos.ordenamiento.insertion_sort import insertion_sort
 
+"""
 # Genera un array de 20 números aleatorios entre 1 y 100
 arr1 = [randint(1, 100) for _ in range(20)]
 print("Array 1 Original:\n", arr1)
@@ -52,4 +53,37 @@ else:
 arr3 = [randint(1, 100) for _ in range(20)]
 print("Array 3 Original:\n", arr3)
 insertion_sort(arr3, 0, len(arr3) - 1)
-print("Array 3 Ordenado con Insertion Sort:\n", arr3)
+print("Array 3 Ordenado con Insertion Sort:\n", arr3)"""
+
+import numpy as np
+# n: número de ejecuciones
+n 	=	10000
+# ln: Límite inferior
+ln = -1
+# up: Límite superior
+up = 1
+# x: Lista de floats
+x = np.zeros(n)
+
+# Inicialización
+for i in range(n):
+	x[i] = ln + np.random.rand() * (up - ln) 
+
+# Imprimimos los 10 primeros numeros del array
+for i in range(10):
+    print(x[i])
+
+# Guardamos el primer elemento del arreglo desordenado para buscarlo posteriormente
+prim_elmt = x[0]
+print(f"Elemento:{prim_elmt}")
+
+# Aplicamos el insertion sort
+insertion_sort(x, 0, len(x) - 1)
+
+# 
+res = binary_search(x, elemento_rand)
+print(f"Elemento:{x[res]} en el indice: {res}")
+
+print("Hola")
+for i in range(10):
+    print(x[i])
