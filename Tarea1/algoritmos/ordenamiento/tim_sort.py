@@ -1,8 +1,8 @@
 """
     Implementación del algoritmo Tim Sort.
 """
-from algoritmos.ordenamiento.insertion_sort import insertion_sort   # pylint: disable=import-error
-from algoritmos.ordenamiento.merge_sort import merge                # pylint: disable=import-error
+from algoritmos.ordenamiento.insertion_sort import insertion_sort
+from algoritmos.ordenamiento.merge_sort import merge
 
 def tim_sort(arr):
     """
