@@ -1,5 +1,4 @@
 """
-    @ Todo: Acabarlo
     Implementación de algoritmo de optimización greedy con busqueda aleatoria
 """
 import random
@@ -17,17 +16,16 @@ def ob_f_1(x):
     """
     return 5 * np.cos(x) + np.cos(5 * x)
 
-def ob_f_1(x):
+def ob_f_2(x):
     """
-    Función Objetivo: 5cos(x)+cos(5x)
+    Función Objetivo: (8sin(x) + sec(2x))^2 
 
     Args:
         Numero float aleatorio
     Returns:
         Resultados de la funcion evaluada
     """
-    return np.power((8 * np.sin(x) + np.sec(2 * x)), 2)
-
+    return np.power((8 * np.sin(x) + (1 / (np.cos(2 * x)))), 2)
 
 # Hiperparametros
 num_iter    = 100
@@ -43,7 +41,7 @@ mejores = []
 
 for i in range(num_iter):
     x = random.uniform(range_min, range_max)
-    f = ob_f(x)
+    f = ob_f_2(x)
 
     if f < mejor_fitness:
         mejor_x = x
@@ -59,6 +57,6 @@ print("f(x) = ", mejor_fitness)
 plt.plot(mejores, marker="o", markersize=3)
 plt.xlabel("Iteración")
 plt.ylabel("Mejor Fitness Encontrado")
-plt.title("Busqueda aleatoria en f(x) = 5cos(x)+cos(5x)")
+plt.title("Mejores Fitness encontrados en Búsqueda aleatoria greedy")
 plt.grid(True)
 plt.show()
