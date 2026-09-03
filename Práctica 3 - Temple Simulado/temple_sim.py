@@ -8,13 +8,27 @@ import matplotlib.pyplot as plt
 
 # Definición de funciones
 
-def peaks(x, y):
-    return 3*(1-x)**2 * np.exp(-(x**2) - (y+1)**2) - 10*(x/5 - x**3 - y**5) * np.exp(-x**2 - y**2) - 1/3*np.exp(-(x + 1) ** 2 - y**2)
+def ackley(x, y):
+    """
+        Función de Ackley.
+        
+        Args:
+            x: Coordenada X.
+            y: Coordenada Y.
+
+        Returns:
+            Función evaluada.
+    """
+    return -20 * np.exp(-0.2 * np.sqrt((x**2 + y**2) / 2) - np.exp(np.cos(2 * np.pi * x) + np.cos(2 * np.pi * y) / 2) + 0.2 + np.exp(1))
+
+
+#def peaks(x, y):
+ #   return 3*(1-x)**2 * np.exp(-(x**2) - (y+1)**2) - 10*(x/5 - x**3 - y**5) * np.exp(-x**2 - y**2) - 1/3*np.exp(-(x + 1) ** 2 - y**2)
 
 # Función objetivo que toma un vector
 def objective_function(position):
     x, y = position
-    return peaks(x, y)
+    return ackley(x, y)
 
 # Límites del espacio de búsqueda
 lower_bound = np.array([-3, -3])
@@ -83,7 +97,7 @@ best_solution, best_energy, path = simulated_annealing(
 x = np.linspace(lower_bound[0], upper_bound[0], 300)
 y = np.linspace(lower_bound[1], upper_bound[1], 300)
 X, Y = np.meshgrid(x, y)
-Z = peaks(X, Y)
+Z = ackley(X, Y)
 
 # Convertir trayectoria a arrays
 path = np.array(path)
@@ -103,13 +117,22 @@ plt.plot(px[0], py[0], 'o', color='red', label='Inicio')
 # Mejor solución
 plt.plot(best_solution[0], best_solution[1], 'x', color='cyan', markersize=10, label='Mejor solución')
 
-plt.title("Simulated Annealing en la función Peaks (Minimización)")
+plt.title("Simulated Annealing (Minimización)")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
 plt.grid(True)
 plt.xlim(lower_bound[0], upper_bound[0])
 plt.ylim(lower_bound[1], upper_bound[1])
+plt.show()
+
+fig = plt.figure()
+ax = fig.add_subplot(projection = "3d")
+
+ax.plot(px[0], py[0], 'o', color = 'red', label = 'Inicio')
+ax.plot(best_solution[0], best_solution[1], 'x', color = 'cyan', markersize = 10, label = 'Mejor solución')
+ax.plot(px, py, color='white', linestyle = '-', linewidth=2, label='Trayectoria')
+
 plt.show()
 
 # ---------------------
