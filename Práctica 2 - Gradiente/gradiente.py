@@ -28,7 +28,7 @@ def gradiente_rosenbrock(x: float, y: float, lr=0.001, iteraciones=10000):
 
     return x, y, historial_costo
 
-def gradiente(x: float, y: float, lr = 0.01, iter: int = 10000):
+def gradiente(x: float, y: float, lr = 0.01, iteraciones: int = 10000):
     """
     Gradiente Descendente para regresión lineal
     """
@@ -37,7 +37,7 @@ def gradiente(x: float, y: float, lr = 0.01, iter: int = 10000):
     b = 0.0
     historial_costo = []
 
-    for _ in range(iter):
+    for _ in range(iteraciones):
         # función objetivo
         y_pred = m * x + b
         costo = 1 / n * np.sum((y - y_pred) ** 2) # Calculo error cuadrático medio
